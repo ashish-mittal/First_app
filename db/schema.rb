@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140910085235) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "albums", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140910085235) do
     t.datetime "updated_at"
   end
 
-  add_index "albums", ["user_id"], name: "index_albums_on_user_id"
+  add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20140910085235) do
     t.datetime "updated_at"
   end
 
-  add_index "blogs", ["user_id"], name: "index_blogs_on_user_id"
+  add_index "blogs", ["user_id"], name: "index_blogs_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.string   "comment"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 20140910085235) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["blog_id"], name: "index_comments_on_blog_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["blog_id"], name: "index_comments_on_blog_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "album_id"
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140910085235) do
     t.datetime "image_updated_at"
   end
 
-  add_index "photos", ["album_id"], name: "index_photos_on_album_id"
+  add_index "photos", ["album_id"], name: "index_photos_on_album_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

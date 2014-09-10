@@ -1,0 +1,4 @@
+<h1>Recent user list</h1>
+<% @users.each do |user| %>
+<p><b><%= user.email %> has been signed up <%= time_ago_in_words(user.created_at) %> ago </b></p>    
+<%end%>

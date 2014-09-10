@@ -1,0 +1,17 @@
+<%= render "blog_form", object: @blog %>
+
+<div id='para1'>
+<% @blogs.each do |blog| %>
+	<% if blog.user == current_user %>
+	<%= link_to "Want to delete",user_blog_path(current_user,blog),
+	 :method => :delete , data: { confirm:"Are You Sure to want delete"}%>
+	<%end%>
+
+<%= link_to "Show",blog_comments_path(blog) %>
+<p>Title:  <%= blog.title %> </p>
+<p>Description:  <%= blog.description %> </p>
+<p>Posted By:  <%= blog.user.username %> </p>
+<%end%>
+</div>
+
+

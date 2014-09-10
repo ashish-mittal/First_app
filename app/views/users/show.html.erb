@@ -1,0 +1,18 @@
+<p>
+<%= image_tag(@user.picture.url(:medium))  %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<h3>
+<%= link_to 'My Album ',user_albums_path(@user)%> |
+<%= link_to 'Update Profile',edit_user_path(@user)%> |
+<%= link_to 'Upload Video',edit_user_path(@user)%> |
+<%= link_to 'Back',user_blogs_path(@user)%> |
+</h3>

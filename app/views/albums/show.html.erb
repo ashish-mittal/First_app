@@ -1,0 +1,8 @@
+<p>Title:  <%= @album.title %> </p>
+<p>Description:  <%=@album.description %> </p>
+
+<% @photos.each do |photo| %>
+<div style = "float: center;">
+<%= image_tag(photo.image.url(:large))  %>
+</div>
+<%end%>

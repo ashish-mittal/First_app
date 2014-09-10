@@ -1,0 +1,15 @@
+<%= link_to 'Create New Album ',new_user_album_path(@user)%> 
+
+
+<% if !@albums.blank? %>
+	<% @albums.each do |album| %>
+	<div>
+		<p>Title:  <%= album.title %> </p>
+		<p>Description:  <%=album.description %> </p>
+		<%= link_to 'Show Album ',user_album_path(@user,album)%> |
+		<%= link_to 'Edit Album ',edit_user_album_path(@user,album)%>
+	</div>
+	<%end%>
+	<%else%>
+ <h1>No album Created !!!!!!!!! Create one </h1>
+ <%end%>

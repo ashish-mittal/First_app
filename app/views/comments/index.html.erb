@@ -1,0 +1,18 @@
+<p>Title:  <%= @blog.title %> </p>
+<p>Description:  <%= @blog.description %> </p>
+<%= render "form", object: @comment %>
+
+
+<% if !@comments.blank? %>
+
+		<% @comments.each do |comment| %>
+			<p><b>Comment has been Created <%= time_ago_in_words(comment.created_at) %> ago by 
+			<%= comment.user.username %></b></p>
+			<p><%= comment.comment %> </p>
+		<%end%>	
+<% else %>
+	
+	<p><h1>No comment on this Blog Please comment</h1></p>
+<% end %>
+
+

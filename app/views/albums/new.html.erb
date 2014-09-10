@@ -1,0 +1,14 @@
+<%= form_for ([@user,@album]), :html => {:multipart => true} do |f| %>
+  
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+  
+<%= f.label :description %>
+<%= f.text_field :description %>
+
+<%= file_field_tag "images[]", type: :file, multiple: true %>
+
+  
+<%= f.submit "submit" %>
+<% end %>

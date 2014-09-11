@@ -11,6 +11,7 @@ end
 
 class User < ActiveRecord::Base
 
+  has_secure_password
   has_many :albums,dependent: :destroy
   has_many :blogs, dependent: :destroy
   has_many :comments
@@ -22,24 +23,5 @@ class User < ActiveRecord::Base
     validates_with MyValidator
     has_attached_file :picture,:styles=>{ :medium=>"300*300>"}
     validates_attachment :picture, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
-    validates_confirmation_of :password
-    attr_accessor :password
-    before_save :encrypt_password  
-
-
-    def encrypt_password  
-    if password.present?  
-      self.password_salt = BCrypt::Engine.generate_salt  
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)  
-     end  
-   end  
-   def self.authenticate(email, password)  
-    user = find_by_email(email)  
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)  
-      user  
-    else  
-      nil  
-    end  
-  end  
 
 end

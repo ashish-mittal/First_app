@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
  end
   
   def create  
-    user = User.authenticate(params[:email], params[:password])  
-    if user  
+    user = User.where("email = ? or username = ?",params[:email],params[:username]).first
+    if user  && User.authenticate(params[:password])
       session[:user_id] = user.id  
       redirect_to user_blogs_path(user.id)  
     else  
-      flash.now.alert = "Invalid email or password"  
+      flash.now.alert = "The email or password you entered is incorrect."  
       render "new"  
     end  
   end  

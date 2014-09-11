@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   
   def create  
     user = User.where("email = ? or username = ?",params[:email],params[:username]).first
-    if user  && User.authenticate(params[:password])
+    if user  && user.authenticate(params[:password])
       session[:user_id] = user.id  
       redirect_to user_blogs_path(user.id)  
     else  
